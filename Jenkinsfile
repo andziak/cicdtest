@@ -1,5 +1,5 @@
 node {
-	def dockerImage = docker.build("cicdtest:${env.BUILD_ID}", 'docker')
+	def dockerImage = docker.build("cicdtest:${env.BUILD_ID}")
 	dockerImage.inside {
 		sh 'python -munittest discover .'
 	}
