@@ -1,18 +1,8 @@
-pipeline {
-	agent any
-	stages {
-		stage('Pre-build') {
-			steps {
-				def dockerImage = docker.build() 
-			}
-		}
-		stage('Test') {
-			steps {
-				dockerImage.inside {
-					sh 'python -munittest -v discover .'
-				}
-			}
-		}
-		
+node {
+	checkout scm
+	def dockerImage = docker.build("cicdtest:${env.BUILD_ID}")
+	dockerImage.inside {
+		sh 'python -munittest discover -v .'
 	}
+
 }
