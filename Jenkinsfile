@@ -1,10 +1,13 @@
 pipeline {
+	agent { 
+		dockerfile {
+			filename 'docker/Dockerfile'
+		}
+	}
 	stages {
 		stage('Test') {
-			agent { 
-				dockerfile {
-					filename 'docker/Dockerfile.test'
-				}
+			steps {
+				sh 'python -munittest discover .'
 			}
 		}
 	}

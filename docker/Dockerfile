@@ -5,5 +5,5 @@ COPY . /opt/cicdtest
 
 RUN pip install -r requirements.txt
 
-CMD python -munittest discover .
+CMD python -V
 
