@@ -5,5 +5,5 @@ COPY . /opt/cicdtest
 
 RUN pip install -r requirements.txt
 
-CMD python -V
+CMD FLASK_APP=src/app.py flask run
 
