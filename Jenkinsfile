@@ -2,6 +2,7 @@ pipeline {
 	agent { 
 		dockerfile {
 			filename 'docker/Dockerfile'
+			label 'cicd'
 		}
 	}
 	stages {
