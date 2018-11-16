@@ -7,8 +7,10 @@ pipeline {
 			}
 		}
 		stage('Test') {
-			dockerImage.inside {
-				sh 'python -munittest -v discover .'
+			steps {
+				dockerImage.inside {
+					sh 'python -munittest -v discover .'
+				}
 			}
 		}
 		
