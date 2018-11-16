@@ -1,6 +1,6 @@
 node {
 	checkout scm
-	def dockerImage = docker.build("cicdtest:${env.BUILD_ID}")
+	def dockerImage = docker.build("cicdtest:${env.BUILD_ID}", 'docker')
 	dockerImage.inside {
 		sh 'python -munittest discover .'
 	}
