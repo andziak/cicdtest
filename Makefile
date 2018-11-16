@@ -1,3 +1,6 @@
 run:
-	docker build -f docker/Dockerfile -t cicdtest .
+	docker build -f Dockerfile -t cicdtest .
 	docker run cicdtest
+test:
+	docker build -f Dockerfile -t cicdtest .
+	docker run cicdtest python -munittest discover -v .
