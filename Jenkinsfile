@@ -1,15 +1,16 @@
 pipeline {
-	agent { 
-		dockerfile {
-			filename 'docker/Dockerfile'
-		}
-	}
+	agent { any }
 	stages {
-		stage('Test') {
+		stage('Pre-build') {
 			steps {
-				sh 'python -munittest discover .'
-				sh 'printenv'
+				def dockerImage = docker.build() 
 			}
 		}
+		stage('Test') {
+			dockerImage.inside {
+				sh 'python -munittest -v discover .'
+			}
+		}
+		
 	}
 }
